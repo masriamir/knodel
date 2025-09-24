@@ -1,0 +1,28 @@
+[project]
+name = "py-tidal"
+version = "0.1.0"
+description = "Python to Tidal Cycles transpiler framework"
+readme = "README.md"
+requires-python = ">=3.13,<3.14"
+authors = [{name = "Amir Masri"}]
+license = {text = "MIT License"}
+dependencies = []
+
+[dependency-groups]
+dev = [
+  "pytest",
+  "ruff",
+]
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I", "N", "W", "UP", "B", "A", "PL", "RUF"]
+ignore = ["A003"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
