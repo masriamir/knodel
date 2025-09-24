@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Dict
 
 from .patterns import Pattern
 
@@ -25,8 +24,8 @@ class TidalSession:
     """Container that holds multiple stream assignments."""
 
     def __init__(self) -> None:
-        self._assignments: Dict[str, StreamAssignment] = {}
-        self._config: Dict[str, str] = {}
+        self._assignments: dict[str, StreamAssignment] = {}
+        self._config: dict[str, str] = {}
 
     def set_stream(self, stream: str, pattern: Pattern) -> None:
         """Assign a pattern to a stream such as ``d1`` or ``d2``.

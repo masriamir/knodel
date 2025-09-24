@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
+from collections.abc import Iterable
 from dataclasses import dataclass
-from typing import Iterable, List
 
-from .base import ControlCollection, ControlAssignment, TidalRenderable
+from .base import ControlAssignment, ControlCollection, TidalRenderable
 
 
 @dataclass(frozen=True)
@@ -77,7 +77,7 @@ class Pattern(TidalRenderable):
             A :class:`Pattern` representing the stacked layers.
         """
 
-        rendered: List[str] = [pattern.to_tidal() for pattern in patterns]
+        rendered: list[str] = [pattern.to_tidal() for pattern in patterns]
         joined = ", ".join(rendered)
         return Pattern(f"stack [{joined}]")
 
@@ -92,7 +92,7 @@ class Pattern(TidalRenderable):
             A :class:`Pattern` that cycles through the concatenated patterns.
         """
 
-        rendered: List[str] = [pattern.to_tidal() for pattern in patterns]
+        rendered: list[str] = [pattern.to_tidal() for pattern in patterns]
         joined = ", ".join(rendered)
         return Pattern(f"cat [{joined}]")
 

@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
+from collections.abc import Callable
 from dataclasses import dataclass
 from importlib import import_module
 from pathlib import Path
-from typing import Callable
 
 from .session import TidalSession
 

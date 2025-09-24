@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass
-from typing import ClassVar, Dict, Mapping
+from typing import ClassVar
 
 from .base import ControlAssignment, ControlCollection, TidalPrimitive
 from .patterns import Pattern, SoundPattern
@@ -34,7 +35,10 @@ class Synth:
         self._validated_controls = self._validate_controls(controls)
 
     @classmethod
-    def _validate_controls(cls, controls: Mapping[str, TidalPrimitive]) -> Dict[str, TidalPrimitive]:
+    def _validate_controls(
+        cls,
+        controls: Mapping[str, TidalPrimitive],
+    ) -> dict[str, TidalPrimitive]:
         """Ensure that the provided control names are supported.
 
         Args:
@@ -69,7 +73,9 @@ class Synth:
             A :class:`Pattern` ready for further composition.
         """
 
-        assignments = [ControlAssignment(key, value) for key, value in self._validated_controls.items()]
+        assignments = [
+            ControlAssignment(key, value) for key, value in self._validated_controls.items()
+        ]
         control_collection = ControlCollection(assignments)
         return SoundPattern(self.sound_name, control_collection)
 

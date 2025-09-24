@@ -3,10 +3,10 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
+from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
-from typing import Iterable, List, Sequence, Union
 
-TidalPrimitive = Union[str, float, int, bool]
+TidalPrimitive = str | float | int | bool
 
 
 def _format_primitive(value: TidalPrimitive) -> str:
@@ -63,7 +63,7 @@ class ControlCollection(TidalRenderable):
     """Groups multiple control assignments into a single renderable block."""
 
     def __init__(self, assignments: Sequence[ControlAssignment] | None = None):
-        self._assignments: List[ControlAssignment] = list(assignments or [])
+        self._assignments: list[ControlAssignment] = list(assignments or [])
 
     def add(self, assignment: ControlAssignment) -> None:
         """Add a new assignment to the collection.
