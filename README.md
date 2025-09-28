@@ -1,6 +1,6 @@
-# py-tidal
+# knodel
 
-`py-tidal` is an experimental toolkit that helps you author [Tidal Cycles](https://tidalcycles.org/) patterns using modern Python. The package offers a set of Pythonic abstractions that mirror the constructs described in the official [Tidal documentation](https://tidalcycles.org/docs/) so that you can describe musical ideas with familiar object-oriented techniques and transpile them into Haskell code that runs inside a live Tidal environment.
+`knodel` is an experimental toolkit that helps you author [Tidal Cycles](https://tidalcycles.org/) patterns using modern Python. The package offers a set of Pythonic abstractions that mirror the constructs described in the official [Tidal documentation](https://tidalcycles.org/docs/) so that you can describe musical ideas with familiar object-oriented techniques and transpile them into Haskell code that runs inside a live Tidal environment.
 
 ## Project goals
 
@@ -33,7 +33,7 @@ uv pip install --group dev
 The `examples` directory contains a minimal session that layers a supersaw and a super pulse-width modulation synthesizer pattern. You can transpile it into Tidal code via the package's CLI:
 
 ```bash
-uv run python -m py_tidal examples.basic_session:create_session --output demo.tidal
+uv run python -m knodel examples.basic_session:create_session --output demo.tidal
 cat demo.tidal
 ```
 
@@ -43,9 +43,9 @@ The generated file is ready to be loaded into a running Tidal Cycles interpreter
 
 1. Import the provided primitives:
    ```python
-   from py_tidal.patterns import Pattern
-   from py_tidal.session import TidalSession
-   from py_tidal.synths import SuperSaw
+   from knodel.patterns import Pattern
+   from knodel.session import TidalSession
+   from knodel.synths import SuperSaw
    ```
 2. Instantiate synthesizer wrappers, optionally configuring their controls.
 3. Use the pattern helpers (e.g., `stack`, `fast`, `slow`) to build complex layers.
@@ -54,9 +54,9 @@ The generated file is ready to be loaded into a running Tidal Cycles interpreter
 For example:
 
 ```python
-from py_tidal.patterns import Pattern
-from py_tidal.session import TidalSession
-from py_tidal.synths import SuperPWM, SuperSaw
+from knodel.patterns import Pattern
+from knodel.session import TidalSession
+from knodel.synths import SuperPWM, SuperSaw
 
 session = TidalSession()
 supersaw = SuperSaw(cutoff=1200, detune=0.4).to_pattern()
@@ -69,7 +69,7 @@ Finally, call `TidalTranspiler` to generate the Haskell snippet:
 
 ```python
 from pathlib import Path
-from py_tidal.transpiler import TidalTranspiler
+from knodel.transpiler import TidalTranspiler
 
 transpiler = TidalTranspiler()
 output = transpiler.transpile(session)

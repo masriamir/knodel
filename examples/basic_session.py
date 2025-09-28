@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from py_tidal.patterns import Pattern
-from py_tidal.session import TidalSession
-from py_tidal.synths import SuperPWM, SuperSaw
+from knodel.patterns import Pattern
+from knodel.session import TidalSession
+from knodel.synths import SuperPWM, SuperSaw
 
 
 def create_session() -> TidalSession:

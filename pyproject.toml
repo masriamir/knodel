@@ -1,5 +1,5 @@
 [project]
-name = "py-tidal"
+name = "knodel"
 version = "0.1.0"
 description = "Python to Tidal Cycles transpiler framework"
 readme = "README.md"

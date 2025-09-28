@@ -1,4 +1,4 @@
-"""Public package exports for ``py_tidal``."""
+"""Public package exports for ``knodel``."""
 
 from .patterns import Pattern, SoundPattern
 from .session import TidalSession

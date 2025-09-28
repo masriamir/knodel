@@ -4,10 +4,10 @@ from __future__ import annotations
 
 import pytest
 
-from py_tidal.patterns import Pattern
-from py_tidal.session import TidalSession
-from py_tidal.synths import SuperPWM, SuperSaw
-from py_tidal.transpiler import TidalTranspiler, TranspilerConfig
+from knodel.patterns import Pattern
+from knodel.session import TidalSession
+from knodel.synths import SuperPWM, SuperSaw
+from knodel.transpiler import TidalTranspiler, TranspilerConfig
 
 
 def test_supersaw_renders_controls() -> None:
