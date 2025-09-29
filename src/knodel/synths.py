@@ -54,7 +54,7 @@ class Synth:
         unknown = sorted(set(controls) - set(cls.parameters))
         if unknown:
             raise ValueError(
-                f"Unknown control(s) for {cls.__name__}: {', '.join(unknown)}"
+                f"Unknown control(s) for {cls.__name__}: {', '.join(unknown)}",
             )
         return dict(controls)
 
