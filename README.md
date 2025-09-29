@@ -91,6 +91,12 @@ uv run ruff check .
 uv run ruff format .
 ```
 
+`mypy` provides static type checking. You can run it manually if needed:
+
+```bash
+uv run mypy .
+```
+
 ## Contributing
 
 Contributions that expand the set of synthesizers, add more pattern combinators, or improve the transpiler are welcome. Please follow the established Google-style docstrings and ensure that the automated tests continue to pass.
