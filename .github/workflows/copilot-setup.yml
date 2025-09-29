@@ -1,0 +1,135 @@
+name: Copilot Environment Setup
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "copilot/**" ]
+  pull_request:
+    branches: [ main, develop ]
+
+env:
+  # Force uv to use PyPI instead of pkgs.safetycli.com if needed
+  UV_INDEX_URL: https://pypi.org/simple/
+
+jobs:
+  copilot-setup:
+    runs-on: ubuntu-latest
+    name: Setup environment for Copilot coding agent
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Read Python version
+      id: python-version
+      run: |
+        if [ -f .python-version ]; then
+          echo "version=$(cat .python-version)" >> $GITHUB_OUTPUT
+        else
+          echo "version=3.13" >> $GITHUB_OUTPUT
+        fi
+        
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ steps.python-version.outputs.version }}
+        
+    - name: Install uv (from GitHub to bypass DNS blocks)
+      uses: astral-sh/setup-uv@v4
+      with:
+        enable-cache: true
+        cache-dependency-glob: "uv.lock"
+        
+    - name: Create fallback environment setup
+      run: |
+        # Create a fallback script for environment setup when DNS blocks occur
+        cat > setup_fallback.sh << 'EOF'
+        #!/bin/bash
+        set -e
+        
+        echo "Setting up fallback environment for Copilot..."
+        
+        # Try uv first, fallback to pip if needed
+        if command -v uv &> /dev/null; then
+          echo "Using uv for dependency management"
+          # Try with default index first
+          if ! uv sync --all-groups; then
+            echo "uv sync failed, trying with PyPI fallback..."
+            UV_INDEX_URL=https://pypi.org/simple/ uv sync --all-groups
+          fi
+        else
+          echo "uv not available, using pip fallback"
+          # Fallback to pip installation
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          else
+            # Install basic dependencies from pyproject.toml
+            pip install ruff pytest
+          fi
+        fi
+        
+        echo "Environment setup completed"
+        EOF
+        
+        chmod +x setup_fallback.sh
+        
+    - name: Install dependencies with fallback
+      run: |
+        ./setup_fallback.sh
+        
+    - name: Cache uv environment
+      uses: actions/cache@v4
+      with:
+        path: |
+          .venv
+          ~/.cache/uv
+          ~/.local/share/uv
+        key: copilot-${{ runner.os }}-uv-${{ hashFiles('uv.lock', 'pyproject.toml') }}
+        restore-keys: |
+          copilot-${{ runner.os }}-uv-
+          
+    - name: Verify environment
+      run: |
+        echo "Verifying Copilot environment setup..."
+        
+        # Test basic imports
+        if command -v uv &> /dev/null; then
+          echo "Testing with uv..."
+          uv run python -c "import sys; print(f'Python {sys.version}')"
+          uv run python -c "import knodel; print('✅ knodel import successful')"
+          
+          echo "Running basic tests..."
+          uv run pytest --tb=short
+          
+          echo "Running linting checks..."
+          uv run ruff check . || echo "⚠️ Linting issues found"
+          uv run ruff format --check . || echo "⚠️ Formatting issues found"
+        else
+          echo "Testing with pip environment..."
+          python -c "import sys; print(f'Python {sys.version}')"
+          PYTHONPATH=src python -c "import knodel; print('✅ knodel import successful')"
+        fi
+        
+        echo "✅ Copilot environment verification completed"
+        
+    - name: Create environment summary
+      run: |
+        echo "## Copilot Environment Setup Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Environment Details" >> $GITHUB_STEP_SUMMARY
+        echo "- Python Version: $(python --version)" >> $GITHUB_STEP_SUMMARY
+        echo "- uv Available: $(command -v uv &> /dev/null && echo 'Yes' || echo 'No')" >> $GITHUB_STEP_SUMMARY
+        echo "- Working Directory: $(pwd)" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Dependencies Status" >> $GITHUB_STEP_SUMMARY
+        if command -v uv &> /dev/null; then
+          echo "- Package Manager: uv" >> $GITHUB_STEP_SUMMARY
+          echo "- Dependencies: $(uv tree 2>/dev/null | wc -l || echo 'N/A') packages" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "- Package Manager: pip (fallback)" >> $GITHUB_STEP_SUMMARY
+          echo "- Dependencies: Minimal setup" >> $GITHUB_STEP_SUMMARY
+        fi
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Setup Status" >> $GITHUB_STEP_SUMMARY
+        echo "✅ Environment ready for Copilot coding agent" >> $GITHUB_STEP_SUMMARY
