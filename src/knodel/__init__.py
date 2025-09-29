@@ -17,3 +17,5 @@ __all__ = [
     "TidalTranspiler",
     "TranspilerConfig",
 ]
+
+__version__ = "0.0.1"
