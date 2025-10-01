@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [project]
@@ -108,7 +108,10 @@ testpaths = ["tests"]
 python-version = "3.13"
 
 [tool.hatch.version]
-path = "src/knodel/__init__.py"
+source = "vcs"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "src/knodel/_version.py"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/knodel"]

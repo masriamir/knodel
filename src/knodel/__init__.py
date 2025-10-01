@@ -18,4 +18,7 @@ __all__ = [
     "TranspilerConfig",
 ]
 
-__version__ = "0.0.1"
+try:
+    from knodel._version import __version__
+except ImportError:
+    __version__ = "0.0.0+unknown"
