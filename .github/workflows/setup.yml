@@ -31,16 +31,6 @@ jobs:
       run: |
         # Use uv to install dependencies, which should work before firewall is enabled
         uv sync --all-groups
-        
-    - name: Cache environment
-      uses: actions/cache@v4
-      with:
-        path: |
-          .venv
-          ~/.cache/uv
-        key: ${{ runner.os }}-uv-${{ hashFiles('uv.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-uv-
           
     - name: Run tests
       run: |
