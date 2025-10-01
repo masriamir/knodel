@@ -7,10 +7,6 @@ on:
   pull_request:
     branches: [ main, develop ]
 
-env:
-  # Force uv to use PyPI instead of pkgs.safetycli.com if needed
-  UV_INDEX_URL: https://pypi.org/simple/
-
 jobs:
   copilot-setup:
     runs-on: ubuntu-latest
@@ -52,9 +48,9 @@ jobs:
         # Try uv first, fallback to pip if needed
         if command -v uv &> /dev/null; then
           echo "Using uv for dependency management"
-          # Try with default index first
-          if ! uv sync --all-groups; then
-            echo "uv sync failed, trying with PyPI fallback..."
+          # Try with safety registry first (as per coding guidelines)
+          if ! uv sync --default-index https://pkgs.safetycli.com/repository/akm-circuits-llc/pypi/simple/ --all-groups; then
+            echo "Safety registry sync failed, trying with PyPI fallback..."
             UV_INDEX_URL=https://pypi.org/simple/ uv sync --all-groups
           fi
         else
