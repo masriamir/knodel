@@ -101,6 +101,20 @@ uv run mypy .
 
 Contributions that expand the set of synthesizers, add more pattern combinators, or improve the transpiler are welcome. Please follow the established Google-style docstrings and ensure that the automated tests continue to pass.
 
+## Dependency Management
+
+This project uses Dependabot to automatically keep dependencies up-to-date. Dependabot will open pull requests weekly with any available updates for our Python dependencies.
+
+All Dependabot PRs must:
+- Pass all automated tests (`uv run pytest`)
+- Pass linting and formatting checks (`uv run ruff check .` and `uv run ruff format --check .`)
+- Be reviewed before merging
+
+To manually update dependencies:
+```bash
+uv sync --all-groups
+```
+
 ## Release Management
 
 `knodel` uses `hatch-vcs` for automated version management based on git tags. Version numbers are derived from git tags following semantic versioning (semver) principles.
