@@ -271,6 +271,54 @@ The required workflow is: **implement → test → fix → verify → close → 
 - **ALWAYS** test the application after making changes:
   1. Run `uv run python -c "import knodel; print('✅ Import test passed')"`
 
+#### Version Management (hatch-vcs)
+
+`knodel` uses `hatch-vcs` for automated version management from git tags.
+
+**Version Information:**
+- Source: Git tags (not manually maintained in code)
+- Format: Semantic versioning (MAJOR.MINOR.PATCH)
+- Dev versions: Commits after tags get .devN+ghash suffix
+- Auto-generated file: src/knodel/_version.py (ignored in git)
+
+**Creating Releases:**
+
+Pre-release checklist:
+- [ ] All tests pass: `uv run pytest`
+- [ ] No linting errors: `uv run ruff check .`
+- [ ] Formatting verified: `uv run ruff format --check .`
+- [ ] Clean working tree: `git status`
+- [ ] All changes pushed to main
+
+Release process:
+1. Create annotated tag with semantic version: `git tag -a v0.2.0 -m "Release 0.2.0: Brief description of changes"`
+2. Push tag to remote: `git push origin v0.2.0`
+3. Verify version: `uv run python -c "import knodel; print(knodel.__version__)"` (Should output: 0.2.0 matching the tag)
+4. Build distributions if publishing: `uv build` (Creates dist/knodel-0.2.0.tar.gz and wheel)
+
+**Version Queries:**
+
+Check current version from Python: `uv run python -c "import knodel; print(knodel.__version__)"`
+- During development (between tags) output example: 0.1.0.dev3+gabcd123
+- At tagged release output example: 0.2.0
+- Note: The version is automatically imported from the auto-generated `src/knodel/_version.py` file via `__init__.py`
+
+**Semantic Versioning Rules:**
+- MAJOR (1.x.x): Breaking API changes
+- MINOR (x.2.x): New features, backwards-compatible
+- PATCH (x.x.1): Bug fixes, backwards-compatible
+
+**Examples:**
+- v0.1.0 to v0.1.1: Bug fix (patch)
+- v0.1.1 to v0.2.0: New feature (minor)
+- v0.9.0 to v1.0.0: Breaking change (major)
+
+**Important Notes:**
+- Never manually edit src/knodel/_version.py (auto-generated)
+- Always use annotated tags: `git tag -a` (not lightweight tags)
+- Tag format: vMAJOR.MINOR.PATCH (e.g., v0.2.0)
+- Push tags explicitly: `git push origin <tagname>`
+
 #### Pre-commit Validation Checklist
 
 - [ ] Ran `uv run ruff check --fix .` to fix all formatting/linting issues
@@ -511,6 +559,17 @@ grep -c "pkgs.safetycli.com" uv.lock
 
 # Check formatting without fixing
 uv run ruff format --check . && uv run ruff check .
+
+# Version management commands
+# Check current version
+uv run python -c "import knodel; print(knodel.__version__)"
+
+# Create release tag
+git tag -a v0.2.0 -m "Release 0.2.0: Description"
+git push origin v0.2.0
+
+# Build distribution packages
+uv build
 ```
 
 ### Performance Expectations and Timeouts

@@ -53,7 +53,9 @@ class Synth:
 
         unknown = sorted(set(controls) - set(cls.parameters))
         if unknown:
-            raise ValueError(f"Unknown control(s) for {cls.__name__}: {', '.join(unknown)}")
+            raise ValueError(
+                f"Unknown control(s) for {cls.__name__}: {', '.join(unknown)}",
+            )
         return dict(controls)
 
     @classmethod
@@ -74,7 +76,8 @@ class Synth:
         """
 
         assignments = [
-            ControlAssignment(key, value) for key, value in self._validated_controls.items()
+            ControlAssignment(key, value)
+            for key, value in self._validated_controls.items()
         ]
         control_collection = ControlCollection(assignments)
         return SoundPattern(self.sound_name, control_collection)

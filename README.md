@@ -95,6 +95,42 @@ uv run ruff format .
 
 Contributions that expand the set of synthesizers, add more pattern combinators, or improve the transpiler are welcome. Please follow the established Google-style docstrings and ensure that the automated tests continue to pass.
 
+## Release Management
+
+`knodel` uses `hatch-vcs` for automated version management based on git tags. Version numbers are derived from git tags following semantic versioning (semver) principles.
+
+**Version Numbering:**
+- Tagged releases: Version matches the git tag (e.g., tag v0.2.0 becomes version 0.2.0)
+- Development builds: Commits after a tag receive a .devN suffix with the commit hash (e.g., 0.2.0.dev3+gabcd123)
+- Version format: Follows PEP 440 and semantic versioning (MAJOR.MINOR.PATCH)
+
+**Creating a New Release:**
+
+1. Ensure all changes are committed and pushed (git status should show clean working tree)
+2. Run pre-release checks (uv run pytest, uv run ruff check ., uv run ruff format --check .)
+3. Create an annotated tag following semantic versioning:
+   - For new features (minor version bump): `git tag -a v0.2.0 -m "Release 0.2.0: Add pattern sequencing support"`
+   - For bug fixes (patch version bump): `git tag -a v0.1.1 -m "Release 0.1.1: Fix transpiler edge cases"`
+   - For breaking changes (major version bump): `git tag -a v1.0.0 -m "Release 1.0.0: Stable API with breaking changes"`
+4. Push the tag to trigger release: `git push origin v0.2.0`
+5. Verify the version: `uv run python -c "import knodel; print(knodel.__version__)"` (Should output: 0.2.0)
+6. Build distribution packages if publishing to PyPI: `uv build`
+
+**Checking Current Version:**
+
+To check the current version of knodel:
+- In Python: `import knodel; print(knodel.__version__)`
+- From command line: `uv run python -c "import knodel; print(knodel.__version__)"`
+
+Note: The version is automatically imported from the auto-generated `src/knodel/_version.py` file. You should always import the `knodel` package (not `_version.py` directly) to access the version.
+
+**Semantic Versioning Guidelines:**
+- MAJOR (1.0.0): Incompatible API changes or breaking changes
+- MINOR (0.2.0): New functionality in a backwards-compatible manner
+- PATCH (0.1.1): Backwards-compatible bug fixes
+
+For more information, see Semantic Versioning 2.0.0 at semver.org.
+
 ## License
 
 This project is licensed under the terms of the [MIT License](LICENSE).
