@@ -36,7 +36,7 @@ Issues = "https://github.com/masriamir/knodel/issues"
 [dependency-groups]
 dev = [
   "ruff>=0.13.2,<0.14.0",  # Linting and formatting
-  "mypy>=1.5.0",           # Type checking
+  "mypy>=1.18.2,<2.0.0",   # Type checking
 ]
 
 test = [
