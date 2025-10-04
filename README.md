@@ -122,6 +122,8 @@ To check the current version of knodel:
 - In Python: `import knodel; print(knodel.__version__)`
 - From command line: `uv run python -c "import knodel; print(knodel.__version__)"`
 
+Note: The version is automatically imported from the auto-generated `src/knodel/_version.py` file. You should always import the `knodel` package (not `_version.py` directly) to access the version.
+
 **Semantic Versioning Guidelines:**
 - MAJOR (1.0.0): Incompatible API changes or breaking changes
 - MINOR (0.2.0): New functionality in a backwards-compatible manner

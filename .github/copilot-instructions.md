@@ -301,6 +301,7 @@ Release process:
 Check current version from Python: `uv run python -c "import knodel; print(knodel.__version__)"`
 - During development (between tags) output example: 0.1.0.dev3+gabcd123
 - At tagged release output example: 0.2.0
+- Note: The version is automatically imported from the auto-generated `src/knodel/_version.py` file via `__init__.py`
 
 **Semantic Versioning Rules:**
 - MAJOR (1.x.x): Breaking API changes
