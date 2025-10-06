@@ -28,6 +28,11 @@ updates:
         patterns:
           - "ruff*"
           - "mypy*"
+        update-types:
+          - "minor"
+          - "patch"
+      test-dependencies:
+        patterns:
           - "pytest*"
         update-types:
           - "minor"
