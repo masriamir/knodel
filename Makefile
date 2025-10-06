@@ -150,21 +150,16 @@ fix:
 # Coverage - run tests with coverage report
 coverage:
 	@echo "$(BLUE)Running tests with coverage...$(NC)"
-	@if $(PYTEST) --cov=knodel --cov-report=term-missing 2>/dev/null; then \
-		echo "$(GREEN)✓ Coverage report generated$(NC)"; \
-	else \
-		echo "$(YELLOW)Note: pytest-cov not installed. Run: uv pip install pytest-cov$(NC)"; \
-		echo "$(YELLOW)Falling back to regular tests...$(NC)"; \
-		$(PYTEST); \
-	fi
+	@$(PYTEST) --cov=knodel --cov-report=term-missing
+	@echo "$(GREEN)✓ Coverage report generated$(NC)"
 
 # Watch-test - run tests in watch mode
 watch-test:
 	@echo "$(BLUE)Running tests in watch mode...$(NC)"
-	@if command -v ptw >/dev/null 2>&1; then \
-		ptw; \
+	@if $(UV) run ptw --help >/dev/null 2>&1; then \
+		$(UV) run ptw; \
 	else \
-		echo "$(YELLOW)pytest-watch not installed. Run: uv pip install pytest-watch$(NC)"; \
+		echo "$(YELLOW)pytest-watch not installed in uv environment. Run: uv pip install --dev pytest-watch$(NC)"; \
 		exit 1; \
 	fi
 
@@ -180,6 +175,16 @@ release:
 		exit 1; \
 	fi
 	@echo "$(BLUE)Creating release v$(VERSION)...$(NC)"
+	@echo "$(BLUE)Validating version...$(NC)"
+	@if git tag -l v$(VERSION) | grep -q .; then \
+		echo "$(RED)Error: Tag v$(VERSION) already exists$(NC)"; \
+		exit 1; \
+	fi
+	@PACKAGE_VERSION=$$($(PYTHON) -c "import knodel; print(knodel.__version__.split('+')[0].replace('.dev', '').lstrip('0'))" 2>/dev/null || echo ""); \
+	if [ -n "$$PACKAGE_VERSION" ] && [ "$$PACKAGE_VERSION" != "$(VERSION)" ] && [ "$$PACKAGE_VERSION" != "0.1" ]; then \
+		echo "$(YELLOW)Warning: Package version ($$PACKAGE_VERSION) differs from release version ($(VERSION))$(NC)"; \
+		echo "$(YELLOW)This is expected for new releases. Proceeding...$(NC)"; \
+	fi
 	@echo "$(BLUE)Running pre-release checks...$(NC)"
 	@$(MAKE) check
 	@if [ -n "$$(git status --porcelain)" ]; then \

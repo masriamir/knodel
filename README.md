@@ -44,9 +44,7 @@ cat demo.tidal
 If you prefer not to use the Makefile, you can set up manually:
 
 ```bash
-uv venv
-source .venv/bin/activate
-uv pip install --group dev
+uv sync --all-groups
 ```
 
 ### Running the example session

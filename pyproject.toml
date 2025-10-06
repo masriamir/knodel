@@ -41,6 +41,8 @@ dev = [
 
 test = [
   "pytest>=8.4.2,<9.0.0",
+  "pytest-cov>=6.0.0,<7.0.0",  # Coverage reporting
+  "pytest-watch>=4.2.0,<5.0.0",  # Watch mode for tests
 ]
 
 [tool.ruff]
