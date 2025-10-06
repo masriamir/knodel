@@ -182,8 +182,8 @@ release:
 	@echo "$(BLUE)Creating release v$(VERSION)...$(NC)"
 	@echo "$(BLUE)Running pre-release checks...$(NC)"
 	@$(MAKE) check
-	@if ! git diff --quiet; then \
-		echo "$(RED)Error: Uncommitted changes. Commit or stash them first.$(NC)"; \
+	@if [ -n "$$(git status --porcelain)" ]; then \
+		echo "$(RED)Error: Uncommitted changes or untracked files. Commit, stash, or remove them first.$(NC)"; \
 		exit 1; \
 	fi
 	@echo "$(BLUE)Creating git tag v$(VERSION)...$(NC)"
