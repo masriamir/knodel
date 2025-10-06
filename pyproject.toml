@@ -105,6 +105,12 @@ known-first-party = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 
+[tool.uv]
+cache-keys = [
+    { file = "pyproject.toml" },
+    { git = { commit = true, tags = true } }
+]
+
 [tool.uv.pip]
 python-version = "3.13"
 
