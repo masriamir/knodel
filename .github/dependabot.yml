@@ -5,16 +5,15 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-      day: "monday"
-      time: "04:00"
+      day: "sunday"
+      time: "07:00"
       timezone: "UTC"
     open-pull-requests-limit: 5
     labels:
-      - "dependencies"
-      - "python"
+      - "dependabot"
     commit-message:
-      prefix: "chore"
-      prefix-development: "chore"
+      prefix: "dependabot"
+      prefix-development: "dependabot"
       include: "scope"
     pull-request-branch-name:
       separator: "-"
