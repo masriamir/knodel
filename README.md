@@ -183,6 +183,20 @@ make check       # Verify all checks pass
 # Commit and create PR
 ```
 
+## Dependency Management
+
+This project uses Dependabot to automatically keep dependencies up-to-date. Dependabot will open pull requests weekly with any available updates for our Python dependencies.
+
+All Dependabot PRs must:
+- Pass all automated tests (`make test`)
+- Pass linting and formatting checks (`make lint` and `make format-check`)
+- Be reviewed before merging
+
+To manually update dependencies:
+```bash
+make install
+```
+
 ## Release Management
 
 `knodel` uses `hatch-vcs` for automated version management based on git tags. Version numbers are derived from git tags following semantic versioning (semver) principles.

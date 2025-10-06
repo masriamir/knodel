@@ -1,0 +1,38 @@
+version: 2
+updates:
+  # Python dependencies via pip/pypi
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "sunday"
+      time: "07:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependabot"
+    commit-message:
+      prefix: "dependabot"
+      prefix-development: "dependabot"
+      include: "scope"
+    pull-request-branch-name:
+      separator: "-"
+    reviewers:
+      - "masriamir"
+    assignees:
+      - "masriamir"
+    # Group development dependencies together
+    groups:
+      dev-dependencies:
+        patterns:
+          - "ruff*"
+          - "mypy*"
+        update-types:
+          - "minor"
+          - "patch"
+      test-dependencies:
+        patterns:
+          - "pytest*"
+        update-types:
+          - "minor"
+          - "patch"
