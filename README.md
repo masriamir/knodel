@@ -188,13 +188,13 @@ make check       # Verify all checks pass
 This project uses Dependabot to automatically keep dependencies up-to-date. Dependabot will open pull requests weekly with any available updates for our Python dependencies.
 
 All Dependabot PRs must:
-- Pass all automated tests (`uv run pytest`)
-- Pass linting and formatting checks (`uv run ruff check .` and `uv run ruff format --check .`)
+- Pass all automated tests (`make test`)
+- Pass linting and formatting checks (`make lint` and `make format-check`)
 - Be reviewed before merging
 
 To manually update dependencies:
 ```bash
-uv sync --all-groups
+make install
 ```
 
 ## Release Management
