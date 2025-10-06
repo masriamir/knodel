@@ -121,7 +121,7 @@ info:
 	@echo -n "  Branch:      " && git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "unknown"
 	@echo -n "  Python:      " && $(PYTHON) --version 2>/dev/null || echo "unknown"
 	@echo -n "  uv:          " && $(UV) --version 2>/dev/null || echo "unknown"
-	@if git diff --quiet 2>/dev/null; then \
+	@if [ -z "$$(git status --porcelain 2>/dev/null)" ]; then \
 		echo "  Status:      $(GREEN)Clean$(NC)"; \
 	else \
 		echo "  Status:      $(YELLOW)Uncommitted changes$(NC)"; \
