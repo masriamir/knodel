@@ -156,12 +156,7 @@ coverage:
 # Watch-test - run tests in watch mode
 watch-test:
 	@echo "$(BLUE)Running tests in watch mode...$(NC)"
-	@if $(UV) run ptw --help >/dev/null 2>&1; then \
-		$(UV) run ptw; \
-	else \
-		echo "$(YELLOW)pytest-watch not installed in uv environment. Run: uv pip install --dev pytest-watch$(NC)"; \
-		exit 1; \
-	fi
+	@$(UV) run ptw
 
 # Docs - build documentation (placeholder)
 docs:
