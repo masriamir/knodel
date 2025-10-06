@@ -33,6 +33,7 @@ jobs:
         languages: ${{ matrix.language }}
         # Use default queries plus security-and-quality query suite
         queries: security-and-quality
+        config-file: .github/codeql/codeql-config.yml
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -40,9 +41,10 @@ jobs:
         python-version: '3.13'
 
     - name: Install uv
-      uses: astral-sh/setup-uv@v3
+      uses: astral-sh/setup-uv@v6
       with:
         enable-cache: true
+        version-file: "pyproject.toml"
 
     - name: Install dependencies
       run: |
