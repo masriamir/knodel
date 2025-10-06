@@ -180,8 +180,8 @@ release:
 		echo "$(RED)Error: Tag v$(VERSION) already exists$(NC)"; \
 		exit 1; \
 	fi
-	@PACKAGE_VERSION=$$($(PYTHON) -c "import knodel; print(knodel.__version__.split('+')[0].replace('.dev', '').lstrip('0'))" 2>/dev/null || echo ""); \
-	if [ -n "$$PACKAGE_VERSION" ] && [ "$$PACKAGE_VERSION" != "$(VERSION)" ] && [ "$$PACKAGE_VERSION" != "0.1" ]; then \
+	@PACKAGE_VERSION=$$($(PYTHON) -c "import knodel; print(knodel.__version__.split('+')[0].replace('.dev', ''))" 2>/dev/null || echo ""); \
+	if [ -n "$$PACKAGE_VERSION" ] && [ "$$PACKAGE_VERSION" != "$(VERSION)" ]; then \
 		echo "$(YELLOW)Warning: Package version ($$PACKAGE_VERSION) differs from release version ($(VERSION))$(NC)"; \
 		echo "$(YELLOW)This is expected for new releases. Proceeding...$(NC)"; \
 	fi
