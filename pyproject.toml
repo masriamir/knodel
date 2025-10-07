@@ -108,6 +108,10 @@ known-first-party = ["src"]
 testpaths = ["tests"]
 
 [tool.uv]
+cache-keys = [
+    { file = "pyproject.toml" },
+    { git = { commit = true, tags = true } }
+]
 required-version = ">=0.8.22,<0.9.0"
 
 [tool.uv.pip]

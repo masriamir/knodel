@@ -14,6 +14,9 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+      with:
+        # Fetch all history for all tags (required for hatch-vcs)
+        fetch-depth: 0
       
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -21,16 +24,22 @@ jobs:
         python-version-file: .python-version
         
     - name: Install uv
-      uses: astral-sh/setup-uv@v4
+      uses: astral-sh/setup-uv@v6
       with:
         # Install from GitHub, bypassing potential DNS blocks for astral.sh
         enable-cache: true
-        cache-dependency-glob: "uv.lock"
+        cache-dependency-glob: |
+          pyproject.toml
+          uv.lock
         
     - name: Install dependencies
       run: |
         # Use uv to install dependencies, which should work before firewall is enabled
         uv sync --all-groups
+        
+    - name: Verify cache configuration
+      run: |
+        uv cache dir
           
     - name: Run tests
       run: |

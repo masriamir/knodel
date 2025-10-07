@@ -15,6 +15,9 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+      with:
+        # Fetch all history for all tags (required for hatch-vcs)
+        fetch-depth: 0
       
     - name: Read Python version
       id: python-version
@@ -31,10 +34,12 @@ jobs:
         python-version: ${{ steps.python-version.outputs.version }}
         
     - name: Install uv (from GitHub to bypass DNS blocks)
-      uses: astral-sh/setup-uv@v4
+      uses: astral-sh/setup-uv@v6
       with:
         enable-cache: true
-        cache-dependency-glob: "uv.lock"
+        cache-dependency-glob: |
+          pyproject.toml
+          uv.lock
         
     - name: Create fallback environment setup
       run: |
@@ -73,6 +78,10 @@ jobs:
     - name: Install dependencies with fallback
       run: |
         ./setup_fallback.sh
+        
+    - name: Verify cache configuration
+      run: |
+        uv cache dir
         
     - name: Verify environment
       run: |
