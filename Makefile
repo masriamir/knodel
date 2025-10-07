@@ -48,7 +48,7 @@ help:
 	@echo "  make fix            - Auto-fix all fixable issues"
 	@echo "  make coverage       - Run tests with coverage report"
 	@echo "  make watch-test     - Run tests in watch mode (requires pytest-watch)"
-	@echo "  make docs           - Build documentation (placeholder)"
+	@echo "  make docs           - Display documentation structure"
 	@echo "  make release        - Create a release (use VERSION=0.2.0)"
 	@echo ""
 	@echo "$(YELLOW)Examples:$(NC)"
