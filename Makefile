@@ -158,10 +158,21 @@ watch-test:
 	@echo "$(BLUE)Running tests in watch mode...$(NC)"
 	@$(UV) run ptw
 
-# Docs - build documentation (placeholder)
+# Docs - open documentation
 docs:
-	@echo "$(YELLOW)Documentation building not yet configured.$(NC)"
-	@echo "This is a placeholder for future Sphinx/MkDocs integration."
+	@echo "$(BLUE)Opening documentation...$(NC)"
+	@if [ -f docs/index.md ]; then \
+		echo "$(GREEN)Documentation available at: docs/index.md$(NC)"; \
+		echo ""; \
+		echo "$(BLUE)Documentation Structure:$(NC)"; \
+		echo "  - docs/index.md - Documentation home"; \
+		echo "  - docs/guides/ - User guides"; \
+		echo "  - docs/contributing/ - Contributing guidelines"; \
+		echo "  - docs/development/ - Development documentation"; \
+		echo "  - docs/security/ - Security policy"; \
+	else \
+		echo "$(RED)Error: Documentation not found$(NC)"; \
+	fi
 
 # Release - create a release
 release:

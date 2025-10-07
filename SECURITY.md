@@ -1,28 +1,18 @@
 # Security Policy
 
-## Supported Versions
+**📍 Documentation has moved!**
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 0.x.x   | :white_check_mark: |
+The security policy has been reorganized into the documentation directory.
 
-## Reporting a Vulnerability
+Please see **[docs/security/SECURITY.md](docs/security/SECURITY.md)** for the complete security policy.
 
-If you discover a security vulnerability in knodel, please report it through GitHub's private vulnerability reporting:
+## Quick Links
 
-1. Go to the Security tab of the repository
-2. Click on "Report a vulnerability"
-3. Provide details about the vulnerability
+- **[Full Security Policy](docs/security/SECURITY.md)** - Complete security information
+- **[Reporting a Vulnerability](docs/security/SECURITY.md#reporting-a-vulnerability)** - How to report security issues
 
-Please do not report security vulnerabilities through public issues.
+## Quick Summary
 
-## Security Scanning
-
-This project uses GitHub CodeQL for continuous security analysis. All code changes are automatically scanned for:
-- Common Python vulnerabilities
-- Injection attacks
-- Path traversal issues
-- Unsafe deserialization
-- Information disclosure
-
-Security alerts are reviewed and addressed promptly.
+- **Reporting**: Use GitHub's private vulnerability reporting
+- **Scanning**: CodeQL automatically scans all code changes
+- **Supported**: All 0.x.x versions currently supported
