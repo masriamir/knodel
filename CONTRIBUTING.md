@@ -1,10 +1,6 @@
 # Contributing to knodel
 
-**📍 Documentation has moved!**
-
-The contributing guidelines have been reorganized to maintain better project structure.
-
-Please see **[docs/contributing/CONTRIBUTING.md](docs/contributing/CONTRIBUTING.md)** for the complete contributing guide.
+Thank you for your interest in contributing to knodel! For the complete contributing guide, please see **[docs/contributing/CONTRIBUTING.md](docs/contributing/CONTRIBUTING.md)**.
 
 ## Quick Links
 

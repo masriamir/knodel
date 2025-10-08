@@ -1,10 +1,6 @@
 # Security Policy
 
-**📍 Documentation has moved!**
-
-The security policy has been reorganized into the documentation directory.
-
-Please see **[docs/security/SECURITY.md](docs/security/SECURITY.md)** for the complete security policy.
+For the complete security policy, please see **[docs/security/SECURITY.md](docs/security/SECURITY.md)**.
 
 ## Quick Links
 
