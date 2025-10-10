@@ -20,10 +20,6 @@ The project intentionally has no runtime dependencies beyond the Python standard
 
 ## Getting started
 
-### Quick Start
-
-The project uses a Makefile for streamlined development workflow:
-
 ```bash
 # Install uv if you haven't already
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -39,13 +35,7 @@ make run
 cat demo.tidal
 ```
 
-### Manual Setup (Alternative)
-
-If you prefer not to use the Makefile, you can set up manually:
-
-```bash
-uv sync --all-groups
-```
+For detailed setup instructions, see the **[Installation Guide](docs/guides/installation.md)**.
 
 ### Running the example session
 
@@ -65,94 +55,36 @@ cat demo.tidal
 
 The generated file is ready to be loaded into a running Tidal Cycles interpreter.
 
-### Writing your own sessions
+For a comprehensive guide on writing sessions, see the **[Quick Start Guide](docs/guides/quickstart.md)**.
 
-1. Import the provided primitives:
-   ```python
-   from knodel.patterns import Pattern
-   from knodel.session import TidalSession
-   from knodel.synths import SuperSaw
-   ```
-2. Instantiate synthesizer wrappers, optionally configuring their controls.
-3. Use the pattern helpers (e.g., `stack`, `fast`, `slow`) to build complex layers.
-4. Add the resulting patterns to a `TidalSession` and transpile using `TidalTranspiler`.
+## Documentation
 
-For example:
+For comprehensive documentation, see:
 
-```python
-from knodel.patterns import Pattern
-from knodel.session import TidalSession
-from knodel.synths import SuperPWM, SuperSaw
-
-session = TidalSession()
-supersaw = SuperSaw(cutoff=1200, detune=0.4).to_pattern()
-pwm = SuperPWM(pwidth=0.7).to_pattern().fast(2)
-session.configure(setcps="0.6")
-session.set_stream("d1", Pattern.stack([supersaw, pwm]))
-```
-
-Finally, call `TidalTranspiler` to generate the Haskell snippet:
-
-```python
-from pathlib import Path
-from knodel.transpiler import TidalTranspiler
-
-transpiler = TidalTranspiler()
-output = transpiler.transpile(session)
-Path("session.tidal").write_text(output, encoding="utf-8")
-```
+- 📚 **[Documentation Home](docs/index.md)** - Complete documentation index
+- 🚀 **[Quick Start Guide](docs/guides/quickstart.md)** - Get up and running in 5 minutes
+- 📦 **[Installation Guide](docs/guides/installation.md)** - Detailed setup instructions
+- 👥 **[Contributing Guidelines](docs/contributing/CONTRIBUTING.md)** - How to contribute
+- 🔒 **[Security Policy](docs/security/SECURITY.md)** - Reporting vulnerabilities
+- 🧪 **[Testing Guide](docs/development/testing.md)** - Writing and running tests
+- 📋 **[Release Process](docs/development/releasing.md)** - Version management
 
 ## Running tests and linters
-
-### Using the Makefile (Recommended)
-
-The Makefile provides convenient commands for all development tasks:
 
 ```bash
 # Run all tests
 make test
-
-# Run tests with custom arguments
-make test ARGS="-v"                           # Verbose output
-make test ARGS="-m unit"                      # Run only unit tests
-make test ARGS="tests/test_synths.py"         # Run specific test file
 
 # Run all quality checks (lint, format-check, type-check, test)
 make check
 
 # Auto-fix linting and formatting issues
 make fix
-
-# Individual checks
-make lint           # Run linting checks
-make format-check   # Check code formatting
-make type-check     # Run type checking
-
-# Other useful commands
-make help           # Display all available commands
-make info           # Show project information
-make clean          # Clean build artifacts and caches
 ```
 
-### Manual Commands (Alternative)
-
-If you prefer not to use the Makefile, you can run commands manually:
-
-```bash
-# Tests
-uv run pytest
-
-# Linting and formatting
-uv run ruff check .
-uv run ruff format .
-
-# Type checking
-uv run mypy .
-```
+For detailed testing instructions, see the **[Testing Guide](docs/development/testing.md)**.
 
 ## Development
-
-For detailed development guidelines, workflow, and contribution instructions, please see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 Key development commands:
 
@@ -164,15 +96,11 @@ make test        # Run all tests
 make build       # Build distribution packages
 ```
 
+For comprehensive development guidelines, see **[Contributing Guidelines](docs/contributing/CONTRIBUTING.md)**.
+
 ## Contributing
 
-Contributions that expand the set of synthesizers, add more pattern combinators, or improve the transpiler are welcome. Please see [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines on:
-
-- Setting up your development environment
-- Development workflow using the Makefile
-- Code style guidelines
-- Testing requirements
-- Pull request process
+Contributions that expand the set of synthesizers, add more pattern combinators, or improve the transpiler are welcome.
 
 **Quick contribution workflow:**
 
@@ -182,6 +110,14 @@ make install     # Set up environment
 make check       # Verify all checks pass
 # Commit and create PR
 ```
+
+See **[Contributing Guidelines](docs/contributing/CONTRIBUTING.md)** for detailed information on:
+
+- Setting up your development environment
+- Development workflow using the Makefile
+- Code style guidelines
+- Testing requirements
+- Pull request process
 
 ## Dependency Management
 
@@ -199,62 +135,21 @@ make install
 
 ## Release Management
 
-`knodel` uses `hatch-vcs` for automated version management based on git tags. Version numbers are derived from git tags following semantic versioning (semver) principles.
+`knodel` uses `hatch-vcs` for automated version management based on git tags.
 
-**Version Numbering:**
-- Tagged releases: Version matches the git tag (e.g., tag v0.2.0 becomes version 0.2.0)
-- Development builds: Commits after a tag receive a .devN suffix with the commit hash (e.g., 0.2.0.dev3+gabcd123)
-- Version format: Follows PEP 440 and semantic versioning (MAJOR.MINOR.PATCH)
-
-**Creating a New Release:**
-
-Using the Makefile (recommended):
+**Creating a release:**
 
 ```bash
-# Ensure all changes are committed
-git status
-
-# Create and push a release
 make release VERSION=0.2.0
 ```
 
-This will automatically:
-1. Run all quality checks
-2. Create an annotated git tag
-3. Push the tag to origin
-4. Build distribution packages
-
-Manual release process:
-
-1. Ensure all changes are committed and pushed (git status should show clean working tree)
-2. Run pre-release checks: `make check`
-3. Create an annotated tag following semantic versioning:
-   - For new features (minor version bump): `git tag -a v0.2.0 -m "Release 0.2.0: Add pattern sequencing support"`
-   - For bug fixes (patch version bump): `git tag -a v0.1.1 -m "Release 0.1.1: Fix transpiler edge cases"`
-   - For breaking changes (major version bump): `git tag -a v1.0.0 -m "Release 1.0.0: Stable API with breaking changes"`
-4. Push the tag to trigger release: `git push origin v0.2.0`
-5. Build distribution packages: `make build`
-
-**Checking Current Version:**
-
-To check the current version of knodel:
+**Checking current version:**
 
 ```bash
 make info    # Shows version and other project info
 ```
 
-Or manually:
-- In Python: `import knodel; print(knodel.__version__)`
-- From command line: `uv run python -c "import knodel; print(knodel.__version__)"`
-
-Note: The version is automatically imported from the auto-generated `src/knodel/_version.py` file. You should always import the `knodel` package (not `_version.py` directly) to access the version.
-
-**Semantic Versioning Guidelines:**
-- MAJOR (1.0.0): Incompatible API changes or breaking changes
-- MINOR (0.2.0): New functionality in a backwards-compatible manner
-- PATCH (0.1.1): Backwards-compatible bug fixes
-
-For more information, see Semantic Versioning 2.0.0 at semver.org.
+For detailed release instructions and semantic versioning guidelines, see **[Release Process](docs/development/releasing.md)**.
 
 ## License
 
