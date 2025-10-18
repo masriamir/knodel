@@ -1,13 +1,16 @@
 # knodel
 
-`knodel` is an experimental toolkit that helps you author [Tidal Cycles](https://tidalcycles.org/) patterns using modern Python. The package offers a set of Pythonic abstractions that mirror the constructs described in the official [Tidal documentation](https://tidalcycles.org/docs/) so that you can describe musical ideas with familiar object-oriented techniques and transpile them into Haskell code that runs inside a live Tidal environment.
+`knodel` is an experimental toolkit that helps author [Tidal Cycles](https://tidalcycles.org/) patterns using modern Python.
+The package offers a set of Pythonic abstractions that mirror the constructs described in the official [Tidal documentation](https://tidalcycles.org/docs/).
+This allows the description of musical ideas with familiar object-oriented techniques,
+as well as transpiling them into Haskell code that runs inside a live Tidal environment.
 
 ## Project goals
 
-* Provide a strongly-typed Python façade for common Tidal concepts (patterns, controls, and synthesizers).
+* Provide a strongly typed Python façade for common Tidal concepts (patterns, controls, and synthesizers).
 * Support ergonomic composition helpers such as stacking and concatenating patterns.
 * Offer an extensible transpilation pipeline that can export ready-to-run `.tidal` source files.
-* Remain faithful to idiomatic Tidal syntax so the generated code is immediately recognisable to live-coders.
+* Remain faithful to idiomatic Tidal syntax, so the generated code is immediately recognizable to live-coders.
 
 This repository contains the initial groundwork for these goals. Future iterations can continue to enrich the set of supported synths, controls, and higher-level musical structures.
 
@@ -21,11 +24,11 @@ The project intentionally has no runtime dependencies beyond the Python standard
 ## Getting started
 
 ```bash
-# Install uv if you haven't already
+# Install uv if not already available
 curl -LsSf https://astral.sh/uv/install.sh | sh
 export PATH="$HOME/.local/bin:$PATH"
 
-# Set up development environment
+# Set up the development environment
 make install
 
 # Run the example session
@@ -39,7 +42,9 @@ For detailed setup instructions, see the **[Installation Guide](docs/guides/inst
 
 ### Running the example session
 
-The `examples` directory contains a minimal session that layers a supersaw and a super pulse-width modulation synthesizer pattern. You can transpile it into Tidal code using the Makefile:
+The `examples` directory contains a minimal session that layers a supersaw,
+and a super pulse-width modulation synthesizer pattern.
+The Makefile allows transpiling the pattern into Tidal code:
 
 ```bash
 make run                    # Creates demo.tidal
@@ -59,7 +64,7 @@ For a comprehensive guide on writing sessions, see the **[Quick Start Guide](doc
 
 ## Documentation
 
-For comprehensive documentation, see:
+For more comprehensive documentation, see:
 
 - 📚 **[Documentation Home](docs/index.md)** - Complete documentation index
 - 🚀 **[Quick Start Guide](docs/guides/quickstart.md)** - Get up and running in 5 minutes
@@ -106,7 +111,7 @@ Contributions that expand the set of synthesizers, add more pattern combinators,
 
 ```bash
 make install     # Set up environment
-# Make your changes
+# Make any changes
 make check       # Verify all checks pass
 # Commit and create PR
 ```
@@ -121,7 +126,8 @@ See **[Contributing Guidelines](docs/contributing/CONTRIBUTING.md)** for detaile
 
 ## Dependency Management
 
-This project uses Dependabot to automatically keep dependencies up-to-date. Dependabot will open pull requests weekly with any available updates for our Python dependencies.
+This project uses Dependabot to automatically keep dependencies up to date.
+Dependabot will open pull requests weekly with any available updates for the Python dependencies.
 
 All Dependabot PRs must:
 - Pass all automated tests (`make test`)
@@ -135,7 +141,7 @@ make install
 
 ## Release Management
 
-`knodel` uses `hatch-vcs` for automated version management based on git tags.
+`knodel` uses `hatch-vcs` for automated version management based on **git tags**.
 
 **Creating a release:**
 
@@ -143,14 +149,14 @@ make install
 make release VERSION=0.2.0
 ```
 
-**Checking current version:**
+**Checking the current version:**
 
 ```bash
-make info    # Shows version and other project info
+make info    # Shows version and other project information
 ```
 
 For detailed release instructions and semantic versioning guidelines, see **[Release Process](docs/development/releasing.md)**.
 
 ## License
 
-This project is licensed under the terms of the [MIT License](LICENSE).
+This project uses the [MIT License](LICENSE).

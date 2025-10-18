@@ -4,7 +4,8 @@ How knodel manages versions and releases.
 
 ## Overview
 
-`knodel` uses `hatch-vcs` for automated version management based on git tags. Version numbers are derived from git tags following semantic versioning (semver) principles.
+`knodel` uses `hatch-vcs` for automated version management based on **git tags**.
+Version numbers derive from **git tags** following semantic versioning (semver) principles.
 
 ## Version Numbering
 
@@ -40,9 +41,9 @@ This will automatically:
 
 ### Manual Release Process
 
-If you prefer not to use the Makefile:
+Without using the Makefile:
 
-1. **Ensure clean working tree**
+1. **Ensure a clean working tree**
    ```bash
    git status  # Should show no uncommitted changes
    ```
@@ -85,7 +86,7 @@ knodel follows [Semantic Versioning 2.0.0](https://semver.org/):
 
 ### MAJOR version (1.0.0)
 
-Increment when you make incompatible API changes or breaking changes.
+Increment when an incompatible API change or breaking change occurs.
 
 **Examples:**
 - Removing or renaming public API methods
@@ -94,7 +95,7 @@ Increment when you make incompatible API changes or breaking changes.
 
 ### MINOR version (0.2.0)
 
-Increment when you add functionality in a backwards-compatible manner.
+Increment when adding any backwards-compatible _functionality_.
 
 **Examples:**
 - Adding new synthesizers
@@ -104,12 +105,12 @@ Increment when you add functionality in a backwards-compatible manner.
 
 ### PATCH version (0.1.1)
 
-Increment when you make backwards-compatible bug fixes.
+Increment when making any backwards-compatible _bug fixes_.
 
 **Examples:**
 - Fixing transpiler edge cases
 - Correcting documentation
-- Fixing bugs without changing API
+- Fixing bugs without changing the API
 
 ## Checking Current Version
 
@@ -119,7 +120,7 @@ Increment when you make backwards-compatible bug fixes.
 make info
 ```
 
-This shows version and other project information.
+This shows the version and other project information.
 
 ### Manually
 
@@ -129,12 +130,13 @@ import knodel
 print(knodel.__version__)
 ```
 
-From command line:
+From the command line:
 ```bash
 uv run python -c "import knodel; print(knodel.__version__)"
 ```
 
-**Note**: The version is automatically imported from the auto-generated `src/knodel/_version.py` file. You should always import the `knodel` package (not `_version.py` directly) to access the version.
+**Note**: The auto-generated `src/knodel/_version.py` file controls the library version.
+Always import the `knodel` package (not `_version.py` directly) to access the version.
 
 ## Release Checklist
 
@@ -147,9 +149,9 @@ For maintainers creating a release:
 - [ ] CHANGELOG updated (if applicable)
 - [ ] Version number follows semantic versioning
 - [ ] Tag message is descriptive
-- [ ] Tag is pushed to origin
-- [ ] Distribution packages are built
-- [ ] GitHub release is created (optional)
+- [ ] Tag pushed to origin
+- [ ] Distribution packages built
+- [ ] GitHub release created (optional)
 
 ## Post-Release
 
@@ -176,8 +178,8 @@ git push origin v0.2.0
 **Solution**: Fix the issues before creating the release:
 
 ```bash
-make check  # See what's failing
-make fix    # Auto-fix what can be fixed
+make check  # See what is failing
+make fix    # Auto-fix where possible
 ```
 
 ### Issue: Tag already exists
@@ -185,8 +187,8 @@ make fix    # Auto-fix what can be fixed
 **Solution**: Delete the tag locally and remotely, then recreate:
 
 ```bash
-git tag -d v0.2.0                # Delete locally
-git push origin :refs/tags/v0.2.0  # Delete remotely
+git tag -d v0.2.0                # Delete the tag locally
+git push origin :refs/tags/v0.2.0  # Delete the tag remotely
 git tag -a v0.2.0 -m "Release message"
 git push origin v0.2.0
 ```

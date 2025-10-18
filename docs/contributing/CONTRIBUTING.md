@@ -1,6 +1,6 @@
-# Contributing to knodel
+# Contributing to `knodel`
 
-Thank you for your interest in contributing to knodel! This document provides guidelines and instructions for contributing to the project.
+This document outlines guidelines and instructions for contributing to this project.
 
 ## Getting Started
 
@@ -28,17 +28,17 @@ Thank you for your interest in contributing to knodel! This document provides gu
    make install
    ```
    
-   This will sync all dependencies including development and test tools.
+   This will sync all dependencies, including development and test tools.
 
 ## Development Workflow
 
-We use a Makefile to standardize common development tasks. Here are the most important commands:
+A Makefile will standardize common development tasks. Here are the most important commands:
 
 ### Quick Reference
 
 ```bash
 make help          # Display all available commands
-make install       # Set up development environment
+make install       # Set up the development environment
 make test          # Run all tests
 make check         # Run all quality checks (lint, format-check, type-check, test)
 make fix           # Auto-fix linting and formatting issues
@@ -78,7 +78,7 @@ This runs:
 - Type checking with mypy
 - All tests
 
-Individual quality checks can be run separately:
+Run individual quality checks as needed:
 
 ```bash
 make lint           # Check code for issues
@@ -113,7 +113,7 @@ make run OUTPUT=my_session.tidal
 ### Project Information
 
 ```bash
-# Display project info (version, git commit, Python version, etc.)
+# Display project information (version, git commit, Python version, etc.)
 make info
 ```
 
@@ -126,19 +126,19 @@ make clean
 
 ## Pre-Commit Checklist
 
-Before committing your changes, please ensure:
+Before committing any changes, please ensure:
 
 - [ ] All tests pass: `make test`
-- [ ] Code is properly formatted: `make format-check` (or run `make fix`)
+- [ ] Code formatted properly: `make format-check` (or run `make fix`)
 - [ ] No linting errors: `make lint` (or run `make fix`)
 - [ ] Type checking passes: `make type-check`
-- [ ] Or simply run: `make check` to verify all of the above
+- [ ] Alternatively, run: `make check` to verify all of the above
 
 ## Code Style Guidelines
 
 ### Python Style
 
-- Follow PEP 8 and the project's ruff configuration
+- Follow PEP 8, and the project's ruff configuration
 - Use double quotes for strings
 - Maximum line length: 88 characters
 - Use Google-style docstrings for functions and classes
@@ -162,22 +162,22 @@ Before committing your changes, please ensure:
    git checkout -b feature/your-feature-name
    ```
 
-2. Make your changes and ensure all checks pass:
+2. Make any changes and ensure all checks pass:
    ```bash
    make check
    ```
 
-3. Commit your changes with a descriptive commit message:
+3. Commit the changes with a descriptive commit message:
    ```bash
-   git commit -m "Add feature: brief description"
+   git commit -m "#99 Add feature: brief description"
    ```
 
-4. Push to your fork and submit a pull request
+4. Push the fork and submit a pull request
 
 5. Ensure your PR description clearly describes:
-   - What changes were made
-   - Why they were made
-   - How to test them
+   - What were the changes?
+   - What was the rationale for the changes?
+   - How to test them?
    - Any breaking changes
 
 6. Link relevant issues using keywords: `Closes #123`, `Fixes #456`, or `Resolves #789`
@@ -200,7 +200,7 @@ Before committing your changes, please ensure:
 
 ## Release Process
 
-Releases are managed automatically using `hatch-vcs` based on git tags.
+The `hatch-vcs` plugin will _automatically_ manage new releases using **git tags**.
 
 For maintainers creating a release:
 
@@ -236,4 +236,4 @@ This will:
 
 ## License
 
-By contributing to knodel, you agree that your contributions will be licensed under the MIT License.
+By agreeing to contribute to `knodel`, _any_ contributions will be licensed under the **MIT License**.

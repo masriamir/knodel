@@ -47,7 +47,7 @@ class TidalTranspiler:
 
         Args:
             session: The session to transpile.
-            destination: Location where the file should be written.
+            destination: The location to write the file.
         """
 
         destination.write_text(self.transpile(session), encoding="utf-8")
@@ -57,7 +57,7 @@ def load_session(path: str) -> TidalSession:
     """Load a ``TidalSession`` from a ``module:function`` string.
 
     Args:
-        path: Import path in ``module:function`` format.
+        path: The import path in ``module:function`` format.
 
     Returns:
         The session created by the referenced factory.
