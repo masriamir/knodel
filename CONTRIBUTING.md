@@ -1,21 +1,25 @@
-# Contributing to knodel
+# Contributing to `knodel`
 
-Thank you for your interest in contributing to knodel! For the complete contributing guide, please see **[docs/contributing/CONTRIBUTING.md](docs/contributing/CONTRIBUTING.md)**.
+All interest in contributing to `knodel` is welcome.
+This document provides a hub for guidelines and instructions for contributing to the project.
+
+For the complete contributing guide,
+please see **[docs/contributing/CONTRIBUTING.md](docs/contributing/CONTRIBUTING.md)**.
 
 ## Quick Links
 
 - **[Full Contributing Guidelines](docs/contributing/CONTRIBUTING.md)** - Complete guide
-- **[Testing Guide](docs/development/testing.md)** - How to test your changes
+- **[Testing Guide](docs/development/testing.md)** - How to test changes
 - **[Release Process](docs/development/releasing.md)** - How releases work
-- **[Installation Guide](docs/guides/installation.md)** - Setting up your environment
+- **[Installation Guide](docs/guides/installation.md)** - Setting up the environment
 
 ## Quick Start for Contributors
 
 ```bash
-# Set up development environment
+# Set up the development environment
 make install
 
-# Make your changes
+# Make changes
 # ...
 
 # Run all checks

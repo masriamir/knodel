@@ -98,7 +98,7 @@ class Pattern(TidalRenderable):
 
 
 class SoundPattern(Pattern):
-    """Specialised ``Pattern`` that represents a Tidal synthesizer trigger."""
+    """Specialized ``Pattern`` that represents a Tidal synthesizer trigger."""
 
     def __init__(self, sound_name: str, controls: ControlCollection | None = None):
         controls = controls or ControlCollection()

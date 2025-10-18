@@ -4,7 +4,8 @@ Comprehensive guide to testing in knodel.
 
 ## Overview
 
-knodel uses `pytest` for testing, `ruff` for linting and formatting, and `mypy` for type checking. All tests should pass before committing changes.
+Knodel uses `pytest` for testing, `ruff` for linting and formatting, and `mypy` for type checking.
+All tests should pass before committing changes.
 
 ## Running Tests
 
@@ -20,10 +21,10 @@ make test ARGS="-v"
 # Run only unit tests
 make test ARGS="-m unit"
 
-# Run specific test file
+# Run a specific test file
 make test ARGS="tests/test_synths.py"
 
-# Run specific test
+# Run a specific test
 make test ARGS="tests/test_synths.py::TestSuperSaw"
 ```
 
@@ -115,17 +116,17 @@ Available pytest markers:
 
 ## Pre-Commit Checklist
 
-Before committing your changes, please ensure:
+Before committing any changes, please ensure:
 
 - [ ] All tests pass: `make test`
-- [ ] Code is properly formatted: `make format-check` (or run `make fix`)
+- [ ] Code formatted properly: `make format-check` (or run `make fix`)
 - [ ] No linting errors: `make lint` (or run `make fix`)
 - [ ] Type checking passes: `make type-check`
-- [ ] Or simply run: `make check` to verify all of the above
+- [ ] Alternatively, run: `make check` to verify all of the above
 
 ## Coverage Reports
 
-Generate a coverage report to see which code is tested:
+Generate a coverage report to examine tested code:
 
 ```bash
 make coverage
@@ -157,7 +158,7 @@ This requires `pytest-watch` to be installed (included in dev dependencies).
 
 ## Debugging Failed Tests
 
-### Run specific test with verbose output
+### Run a specific test with verbose output enabled
 
 ```bash
 uv run pytest -xvs tests/test_specific.py::test_name
@@ -171,10 +172,10 @@ Flags:
 ### Use pytest's debugging features
 
 ```bash
-# Drop into debugger on failure
+# Drop into the debugger on failure
 uv run pytest --pdb
 
-# Drop into debugger on first failure
+# Drop into the debugger on first failure
 uv run pytest -x --pdb
 ```
 
@@ -182,10 +183,10 @@ uv run pytest -x --pdb
 
 All tests automatically run in GitHub Actions on:
 - Pull requests
-- Pushes to main branch
+- Pushes to the `main` branch
 - Tag creation
 
-Ensure your changes pass locally before pushing to avoid CI failures.
+Ensure the changes pass locally before pushing to avoid CI failures.
 
 ## Related Documentation
 

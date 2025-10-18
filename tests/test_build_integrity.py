@@ -24,7 +24,7 @@ def test_uv_cache_configuration_exists() -> None:
 
 @pytest.mark.unit
 def test_version_accessible_after_install() -> None:
-    """Verify version is accessible after fresh install (cache test)."""
+    """Verify the version is accessible after a fresh installation (cache test)."""
     result = subprocess.run(  # noqa: S603
         [sys.executable, "-c", "import knodel; print(knodel.__version__)"],
         capture_output=True,

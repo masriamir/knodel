@@ -16,7 +16,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "session",
-        help=("Import path to a function returning a TidalSession (module:function)."),
+        help="Import path to a function returning a TidalSession (module:function).",
     )
     parser.add_argument(
         "--output",

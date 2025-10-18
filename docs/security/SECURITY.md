@@ -3,18 +3,18 @@
 ## Supported Versions
 
 | Version | Supported          |
-| ------- | ------------------ |
+|---------|--------------------|
 | 0.x.x   | :white_check_mark: |
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability in knodel, please report it through GitHub's private vulnerability reporting:
+If a security vulnerability is discovered in knodel, please report it through GitHub's private vulnerability reporting:
 
 1. Go to the Security tab of the repository
 2. Click on "Report a vulnerability"
 3. Provide details about the vulnerability
 
-Please do not report security vulnerabilities through public issues.
+Please _don't_ report security vulnerabilities through public issues.
 
 ## Security Scanning
 
