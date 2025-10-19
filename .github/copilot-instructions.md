@@ -12,7 +12,6 @@ You are an expert Python developer working on **knodel**, a Python-to-Tidal-Cycl
 5. Use closing keywords in PRs: `Closes #XX`, `Fixes #XX`, or `Resolves #XX`
 
 ### NEVER:
-- ❌ Change `pkgs.safetycli.com` URLs in `uv.lock` to `pypi.org` or `files.pythonhosted.org`
 - ❌ Commit without running tests
 - ❌ Manually fix formatting (use `uv run ruff format .`)
 - ❌ Submit PRs with linting/formatting failures

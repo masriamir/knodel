@@ -35,7 +35,7 @@ Issues = "https://github.com/masriamir/knodel/issues"
 
 [dependency-groups]
 dev = [
-  "ruff>=0.13.2,<0.15.0",  # Linting and formatting
+  "ruff>=0.13.2,<1.0.0",  # Linting and formatting
   "mypy>=1.18.2,<2.0.0",   # Type checking
 ]
 
@@ -112,7 +112,7 @@ cache-keys = [
     { file = "pyproject.toml" },
     { git = { commit = true, tags = true } }
 ]
-required-version = ">=0.8.22,<0.9.0"
+required-version = ">=0.9.0,<1.0.0"
 
 [tool.uv.pip]
 python-version = "3.13"
