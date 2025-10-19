@@ -16,4 +16,4 @@ query-filters:
   - exclude:
       id: py/unused-import  # May have false positives with dynamic imports
   - exclude:
-      id: py/missing-equals  # Not relevant for our dataclass usage
+      id: py/missing-equals  # Not relevant for current dataclass usage

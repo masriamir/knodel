@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-Get up and running with knodel in 5 minutes!
+Get up and running with `knodel` in 5 minutes.
 
 ## Prerequisites
 
@@ -11,14 +11,14 @@ Get up and running with knodel in 5 minutes!
 
 ### Quick Setup
 
-The project uses a Makefile for streamlined development workflow:
+The project uses a Makefile for a streamlined development workflow:
 
 ```bash
-# Install uv if you haven't already
+# Install uv if not already available
 curl -LsSf https://astral.sh/uv/install.sh | sh
 export PATH="$HOME/.local/bin:$PATH"
 
-# Set up development environment
+# Set up the development environment
 make install
 
 # Run the example session
@@ -30,7 +30,7 @@ cat demo.tidal
 
 ### Manual Setup (Alternative)
 
-If you prefer not to use the Makefile, you can set up manually:
+Instead of using the Makefile, to set up manually:
 
 ```bash
 uv sync --all-groups
@@ -38,7 +38,9 @@ uv sync --all-groups
 
 ## Running the Example Session
 
-The `examples` directory contains a minimal session that layers a supersaw and a super pulse-width modulation synthesizer pattern. You can transpile it into Tidal code using the Makefile:
+The `examples` directory contains a minimal session that layers a supersaw,
+and a super pulse-width modulation synthesizer pattern.
+The Makefile allows transpiling the pattern into Tidal code:
 
 ```bash
 make run                    # Creates demo.tidal
@@ -54,7 +56,7 @@ cat demo.tidal
 
 The generated file is ready to be loaded into a running Tidal Cycles interpreter.
 
-## Writing Your First Session
+## Writing The First Session
 
 1. Import the provided primitives:
    ```python
