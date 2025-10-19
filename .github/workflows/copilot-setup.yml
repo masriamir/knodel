@@ -53,7 +53,7 @@ jobs:
         # Try uv first, fallback to pip if needed
         if command -v uv &> /dev/null; then
           echo "Using uv for dependency management"
-          UV_INDEX_URL=https://pypi.org/simple/ uv sync --all-groups
+          uv sync --all-groups
         else
           echo "uv not available, using pip fallback"
           # Fallback to pip installation
