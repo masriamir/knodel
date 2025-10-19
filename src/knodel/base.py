@@ -42,8 +42,8 @@ class ControlAssignment(TidalRenderable):
     """Represents the application of a named control to a pattern.
 
     Attributes:
-        name: The control identifier used by Tidal, for example ``cutoff``.
-        value: The literal value that should be assigned to ``name``.
+        name: The control identifier used by Tidal, for example, ``cutoff``.
+        value: The literal value assigned to ``name``.
     """
 
     name: str

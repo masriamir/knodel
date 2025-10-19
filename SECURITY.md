@@ -11,4 +11,4 @@ For the complete security policy, please see **[docs/security/SECURITY.md](docs/
 
 - **Reporting**: Use GitHub's private vulnerability reporting
 - **Scanning**: CodeQL automatically scans all code changes
-- **Supported**: All 0.x.x versions currently supported
+- **Supported**: All 0.x.x versions

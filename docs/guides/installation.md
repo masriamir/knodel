@@ -10,7 +10,9 @@ Detailed installation instructions for knodel.
 
 ## Installing uv
 
-knodel uses `uv` for dependency management. The project intentionally has no runtime dependencies beyond the Python standard library. Development tooling (formatting, linting, and testing) is handled by `ruff` and `pytest` through `uv` dependency groups.
+Knodel uses `uv` for dependency management.
+The project intentionally has no runtime dependencies beyond the Python standard library.
+Development tooling (formatting, linting, and testing) is handled by `ruff` and `pytest` through `uv` dependency groups.
 
 ### Option 1: Install Script (Linux/macOS - Recommended)
 
@@ -65,7 +67,7 @@ This will:
 uv sync --all-groups
 ```
 
-**Note**: The first sync may take 3-4 minutes to complete. Don't cancel it!
+**Note**: The first sync may take 3-4 minutes to complete. Don't cancel it.
 
 ### Verify Installation
 
@@ -83,23 +85,23 @@ make info
 
 ### Issue: `uv: command not found`
 
-**Solution**: Ensure `uv` is in your PATH:
+**Solution**: Ensure `uv` is in the `PATH`:
 
 ```bash
 export PATH="$HOME/.local/bin:$PATH"
 ```
 
-Add this to your shell's RC file (`.bashrc`, `.zshrc`, etc.) to make it permanent.
+Add this to the shell's RC file (`.bashrc`, `.zshrc`, etc.) to make it permanent.
 
 ### Issue: Python version mismatch
 
-**Solution**: knodel requires Python 3.13. Check your Python version:
+**Solution**: knodel requires Python 3.13. Check the Python version:
 
 ```bash
 python --version
 ```
 
-If you need to install Python 3.13, `uv` can manage Python versions for you:
+To install Python 3.13, `uv` can be used to manage Python versions:
 
 ```bash
 uv python install 3.13
@@ -118,7 +120,7 @@ make clean
 uv cache clean
 ```
 
-Then try installation again:
+Then try the installation again:
 
 ```bash
 make install
@@ -126,6 +128,6 @@ make install
 
 ## Next Steps
 
-- Follow the [Quick Start Guide](quickstart.md) to run your first session
-- Review the [Contributing Guidelines](../contributing/CONTRIBUTING.md) if you want to contribute
+- Follow the [Quick Start Guide](quickstart.md) to run an example session
+- Review the [Contributing Guidelines](../contributing/CONTRIBUTING.md) for contributing to the project
 - Check out the [Testing Guide](../development/testing.md) to learn about running tests

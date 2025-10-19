@@ -31,7 +31,7 @@ class TidalSession:
         """Assign a pattern to a stream such as ``d1`` or ``d2``.
 
         Args:
-            stream: The stream identifier recognised by Tidal.
+            stream: The stream identifier recognized by Tidal.
             pattern: The pattern to evaluate on the stream.
         """
 
@@ -41,14 +41,14 @@ class TidalSession:
         """Attach raw configuration directives such as ``setcps``.
 
         Args:
-            **options: Key/value pairs that are rendered verbatim.
+            **options: Key/value pairs stored verbatim.
         """
 
         for key, value in options.items():
             self._config[key] = str(value)
 
     def to_tidal(self) -> str:
-        """Render the entire session as multiline Tidal source.
+        """Render the entire session as a multiline Tidal source.
 
         Returns:
             A newline-delimited string of configuration and stream bindings.

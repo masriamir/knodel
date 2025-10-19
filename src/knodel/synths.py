@@ -1,4 +1,4 @@
-"""Object oriented wrappers around common Tidal synthesizers."""
+"""Object-oriented wrappers around common Tidal synthesizers."""
 
 from __future__ import annotations
 
@@ -39,7 +39,7 @@ class Synth:
         cls,
         controls: Mapping[str, TidalPrimitive],
     ) -> dict[str, TidalPrimitive]:
-        """Ensure that the provided control names are supported.
+        """Ensure support of the provided control names.
 
         Args:
             controls: Control name/value pairs passed to the constructor.
@@ -48,7 +48,7 @@ class Synth:
             A copy of ``controls`` if the names are valid.
 
         Raises:
-            ValueError: If an unknown control name is provided.
+            ValueError: If provided an unknown control name.
         """
 
         unknown = sorted(set(controls) - set(cls.parameters))
@@ -69,10 +69,10 @@ class Synth:
         return dict(cls.parameters)
 
     def to_pattern(self) -> Pattern:
-        """Convert the synthesizer invocation into a :class:`Pattern`.
+        """Convert the synthesizer invocation into a ``Pattern``.
 
         Returns:
-            A :class:`Pattern` ready for further composition.
+            A ``Pattern`` ready for further composition.
         """
 
         assignments = [
@@ -98,7 +98,7 @@ class Synth:
             **controls: Extra control assignments to merge.
 
         Returns:
-            A new :class:`Pattern` representing the updated controls.
+            A new ``Pattern`` representing the updated ``controls``.
         """
 
         merged = {**self._validated_controls, **self._validate_controls(controls)}

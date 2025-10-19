@@ -43,7 +43,7 @@ uv run python -c "import knodel; print('✅ Setup complete')"
 - Test both success and failure cases
 
 ### When suggesting dependencies:
-- Add to `pyproject.toml` under appropriate group (`[dependency-groups]`)
+- Add to `pyproject.toml` under the appropriate group (`[dependency-groups]`)
 - Sync with: `uv sync --all-groups`
 - NEVER modify URLs in `uv.lock`
 
@@ -63,22 +63,22 @@ uv run python -c "import knodel; print('✅ Setup complete')"
 - Support pattern transformations (fast, slow, stack)
 
 ### Version Management:
-- Uses `hatch-vcs` - versions from git tags only
+- Uses `hatch-vcs` - versions from **git tags** _only_
 - Create releases with: `git tag -a v0.2.0 -m "Release message"`
 - Check version: `uv run python -c "import knodel; print(knodel.__version__)"`
 
 ## 🔧 COMMON TASKS
 
-### Add new synthesizer:
+### Add a new synthesizer:
 1. Create class in `src/knodel/synths.py` inheriting from `BaseSynth`
 2. Define controls as dataclass fields
 3. Implement `to_tidal()` method
 4. Add unit test in `tests/test_synths.py`
 
-### Add new pattern transformation:
+### Add a new pattern transformation:
 1. Add method to `Pattern` class in `src/knodel/patterns.py`
 2. Return new `Pattern` instance with transformed expression
-3. Add test demonstrating Tidal output
+3. Add a unit test demonstrating Tidal output
 
 ### Fix failing tests:
 ```bash
@@ -92,7 +92,7 @@ uv run pytest tests/test_specific.py::TestClass::test_method  # Run specific tes
 ```python
 # Problem: [Brief description]
 # Root cause: [Technical explanation]
-# Solution: [What was changed]
+# Solution: [The changes made]
 
 [code changes]
 
@@ -134,7 +134,7 @@ uv run python -c "import knodel; print(knodel.__version__)"
 - **Be specific**: Use exact commands, not generic instructions
 - **Be proactive**: Anticipate common issues (formatting, tests, imports)
 - **Default to testing**: When unsure, suggest writing a test first
-- **Respect Tidal idioms**: Generated Haskell should look hand-written
+- **Respect Tidal idioms**: Generated Haskell should look handwritten
 
 ---
 Remember: You're not just writing Python - you're bridging Python developers to the Tidal Cycles live-coding ecosystem. Make it pythonic on the input side and idiomatic Tidal on the output side.
